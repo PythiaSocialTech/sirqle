@@ -1,0 +1,14 @@
+site_name: sircle
+
+nav:
+  - Get started: index.md
+  - API Reference: reference.md
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings
+
+watch:
+  - src/sircle

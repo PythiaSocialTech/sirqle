@@ -1,0 +1,49 @@
+[project]
+name = "sircle"
+version = "0.1.0"
+authors = [{ name = "Pythia Dev Team", email = "dev@pythia.social" }]
+description = "SurrealDB Query interface"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["python-dotenv", "surrealdb"]
+
+[build-system]
+requires = ["setuptools>=61.0", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-asyncio", "pytest-dependency", "commitizen"]
+docs = [
+  "mkdocs",
+  "mkdocstrings",
+  "mkdocs-literate-nav",
+  "mkdocstrings[python]>=0.18",
+  "mkdocs-gen-files",
+  "mkdocs-literate-nav",
+]
+
+[tool.black]
+line-length = 88
+
+[tool.pycln]
+all = true
+
+[tool.isort]
+line_length = 88
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version = "0.1.0"
+version_files = ["pyproject.toml:version"]
+tag_format = "v$version"
+bump_message = "bump: $current_version → $new_version [skip ci]"
+
+
+[tool.pytest.ini_options]
+testpaths = 'tests'
+asyncio_mode = 'strict'
