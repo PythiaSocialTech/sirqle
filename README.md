@@ -1,16 +1,16 @@
 # Sirqle
 
-Surreal DB with Python wrapper.
+Surreal DB with Python wrapper for [surrealdb.py](https://github.com/surrealdb/surrealdb.py) which makes it easy to write SurrealQL queries in Python.
 
 Install with:
 
-```
+```sh
 pip install sirqle
 ```
 
 Usage:
 
-```
+```python
 
 from sirqle.query import Config, Query
 
@@ -31,19 +31,30 @@ cont = {
 }
 my_query.create(table_name).content(cont)
 response = await my_query.execute()
-print(response)
+
+# the result
+
+response = [{'company': 'SurrealDB', 'id': 'person:it2e579rij23zu0iswk4', 'name': 'Tobie', 'skills': ['Rust', 'Go', 'JavaScript']}]
 ```
 
 ## Config Module
 
-The `Config` class is used to configure the connection the database. It uses the `HTTPClient` and requires the following arguments:
+The `Config` class is used to configure the connection the database. It uses the `HTTPClient` and requires the following arguments depending on the desired method:
+
+> 1.Manually enter the params
 
 - `url` : URL of the database
 - `namespace` : The namespace of the database
 - `database` : The name of the database
 - `username` : The access username
 - `password` : The access password
+
+> 2.Pass a previous defined client
+
 - `client` : an `HTTPClient` configured beforehand
+
+> 3.Load the params from an `.env` file
+
 - `from_env`: if it set to `True` then it expects a `.db_conf` file where all the previous arguments are defined
 
 ## Query Module
@@ -102,10 +113,28 @@ SELECT * FROM person;
 
 becomes
 
-```
+```python
 query.select("*").from_("person")
 ```
 
-- Execution
+> **Execution**
 
 To execute the query run `res = await query.execute()`, where `res` is the result of the query.
+
+### Custom query example
+
+If you need something more complex than the basic operations, you can directly pass an SurrealQL query as a string:
+
+> This query creates a temporary entry in the table `Topic` where we hash the values of `topic_label` and `topic_source`, returns the hash value and then delete the table.
+
+```python
+table_name = "Topic"
+topic_label = "SurrealDB is awesome"
+topic_source = "My personal knowledge"
+my_query.custom( f"create {table_name} content"
+                + f" {{words: {topic_label}, source: {topic_source}}}"
+                + f" return crypto::md5(string::concat($this.words, $this.source));"
+                + f" delete from {table_name};")
+response = await my_query.execute()
+response = {"crypto::md5": "8f23a9630e18d525946740e5498798be"}
+```
