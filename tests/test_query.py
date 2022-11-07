@@ -32,7 +32,6 @@ async def test_create():
     }
     create_query.create(table_name).content(cont)
     res = await create_query.execute()
-    print(res)
     assert res[0]["id"].split(":")[0] == table_name
     assert res[0]["company"] == cont["company"]
     assert res[0]["skills"] == cont["skills"]
