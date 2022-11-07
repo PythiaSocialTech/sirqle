@@ -1,11 +1,16 @@
 [project]
-name = "sircle"
+name = "sirqle"
 version = "0.1.0"
 authors = [{ name = "Pythia Dev Team", email = "dev@pythia.social" }]
 description = "SurrealDB Query interface"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = ["python-dotenv", "surrealdb"]
+license = { file = "LICENSE" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["sirqle*"]
 
 [build-system]
 requires = ["setuptools>=61.0", "setuptools-scm"]

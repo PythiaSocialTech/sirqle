@@ -1,9 +1,13 @@
 ## Query
-## ::: sircle.query.Config
+
+## ::: sirqle.query.Config
+
     options:
       show_source: false
 
 ## Config
-## ::: sircle.query.Query
+
+## ::: sirqle.query.Query
+
     options:
       show_source: false

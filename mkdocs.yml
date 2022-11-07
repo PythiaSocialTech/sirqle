@@ -1,4 +1,4 @@
-site_name: sircle
+site_name: sirqle
 
 nav:
   - Get started: index.md
@@ -11,4 +11,4 @@ plugins:
   - mkdocstrings
 
 watch:
-  - src/sircle
+  - src/sirqle
