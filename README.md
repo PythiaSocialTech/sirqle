@@ -1,6 +1,38 @@
-# DB
+# Sirqle
 
-Surreal DB with Python wrapper
+Surreal DB with Python wrapper.
+
+Install with:
+
+```
+pip install sirqle
+```
+
+Usage:
+
+```
+
+from sirqle.query import Config, Query
+
+config = Config(
+        url = "localhost:8000",
+        namespace = "test",
+        database = "test",
+        username = "test",
+        password = "test",
+)
+my_query = Query(config=config)
+
+table_name = "person"
+cont = {
+    "name": "Tobie",
+    "company": "SurrealDB",
+    "skills": ["Rust", "Go", "JavaScript"],
+}
+my_query.create(table_name).content(cont)
+response = await my_query.execute()
+print(response)
+```
 
 ## Config Module
 

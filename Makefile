@@ -1,7 +1,6 @@
 .ONESHELL:
 
 .PHONY: data, help, install
-include .env
 export
 
 SHELL = /bin/zsh
@@ -10,7 +9,7 @@ BIN = .venv_dev/bin/
 
 install: ## install dev venv
 	@python3 -m venv .venv_dev
-	@$(BIN)pip install -r requirements_dev.txt
+	@$(BIN)pip install '.[dev]'
 
 startdb: ## start the database
 	@surreal start --bind 127.0.0.1:9120 --log trace --user test --pass test memory > /dev/null 2>db_log.txt &
