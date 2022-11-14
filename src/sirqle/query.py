@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 from distutils.util import execute
 from typing import List
+from warnings import warn
 
 from dotenv import dotenv_values
 from surrealdb.clients.http import HTTPClient
@@ -126,8 +127,6 @@ class Query:
     def select(self, args: str | List[str]) -> Query:
         """SELECT statement.
 
-        [TODO:description]
-
         Args:
             args: a table or a list of tables
 
@@ -163,6 +162,10 @@ class Query:
         if args:
             self.query += " WHERE "
             self._parse_args(args)
+        else:
+            warn(
+                "No arguments for RETURN statement. RETURN statement not added to the query."
+            )
         return self
 
     def use(self, args: str | list | dict | Query) -> Query:
@@ -178,7 +181,7 @@ class Query:
         self._parse_args(args)
         return self
 
-    def return_(self, args: str | list | dict | Query) -> Query:
+    def return_(self, args: str | list | dict | Query | None) -> Query:
         """RETURN statement.
 
         Args:
@@ -187,8 +190,13 @@ class Query:
         Returns:
             Query: returns the same `Query` object
         """
-        self.query += " RETURN "
-        self._parse_args(args)
+        if args:
+            self.query += " RETURN "
+            self._parse_args(args)
+        else:
+            warn(
+                "No arguments for RETURN statement. RETURN statement not added to the query."
+            )
         return self
 
     def insert(
