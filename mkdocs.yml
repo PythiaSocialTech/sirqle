@@ -1,14 +1,10 @@
 site_name: sirqle
-
 nav:
   - Get started: index.md
   - API Reference: reference.md
-
 theme:
   name: "material"
-
 plugins:
   - mkdocstrings
-
 watch:
   - src/sirqle
