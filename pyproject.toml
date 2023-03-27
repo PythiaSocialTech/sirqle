@@ -5,7 +5,7 @@ authors = [{ name = "Pythia Dev Team", email = "dev@pythia.social" }]
 description = "SurrealDB Query interface"
 readme = "README.md"
 requires-python = ">=3.10"
-dependencies = ["python-dotenv", "surrealdb"]
+dependencies = ["python-dotenv", "surrealdb==0.2.0"]
 license = { file = "LICENSE" }
 [project.urls]
 Source = "https://github.com/PythiaSocialTech/sirqle"
