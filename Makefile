@@ -7,9 +7,12 @@ SHELL = /bin/zsh
 BIN = .venv_dev/bin/
 
 
-install: ## install dev venv
+warn:
+	@echo "Use make for development only!"
+
+install: warn ## install dev venv
 	@python3 -m venv .venv_dev
-	@$(BIN)pip install '.[dev]'
+	@$(BIN)pip install -e '.[dev]'
 
 startdb: ## start the database
 	@surreal start --bind 127.0.0.1:9120 --log trace --user test --pass test memory > /dev/null 2>db_log.txt &

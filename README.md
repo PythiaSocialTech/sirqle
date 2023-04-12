@@ -39,9 +39,9 @@ response = [{'company': 'SurrealDB', 'id': 'person:it2e579rij23zu0iswk4', 'name'
 
 ## Config Module
 
-The `Config` class is used to configure the connection the database. It uses the `HTTPClient` and requires the following arguments depending on the desired method:
+The `Config` class is used to configure the connection the database. It uses the `SurrealHTTP` client and requires the following arguments depending on the desired method:
 
-> 1.Manually enter the params
+> 1. Manually enter the parameters
 
 - `url` : URL of the database
 - `namespace` : The namespace of the database
@@ -49,17 +49,17 @@ The `Config` class is used to configure the connection the database. It uses the
 - `username` : The access username
 - `password` : The access password
 
-> 2.Pass a previous defined client
+> 2. Pass a previous defined client
 
-- `client` : an `HTTPClient` configured beforehand
+- `client` : an `SurrealHTTP` client from `surrealdb.py`
 
-> 3.Load the params from an `.env` file
+> 3. Load the parameters from a file
 
-- `from_env`: if it set to `True` then it expects a `.db_conf` file where all the previous arguments are defined
+- `env_file`: the name of the env file. Defaults to `.db_conf`.
 
 ## Query Module
 
-The Query module aims to replace the standard SurrealQL and make it more Python friendly. Internally it constructs a SurrealQL string from method chaining and sends the query to the database.
+The Query module aims to extend the standard SurrealQL and make it more Python friendly. Internally it constructs a SurrealQL string from method chaining and sends the query to the database.
 
 ### Initialize the query
 

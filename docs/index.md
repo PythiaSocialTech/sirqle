@@ -1,13 +1,13 @@
 ## Config Module
 
-The `Config` class is used to configure the connection the database. It uses the `HTTPClient` and requires the following arguments:
+The `Config` class is used to configure the connection the database. It uses the `SurrealHTTP` and requires the following arguments:
 
 - `url` : URL of the database
 - `namespace` : The namespace of the database
 - `database` : The name of the database
 - `username` : The access username
 - `password` : The access password
-- `client` : an `HTTPClient` configured beforehand
+- `client` : an `SurrealHTTP` client configured beforehand
 - `from_env`: if it set to `True` then it expects a `.db_conf` file where all the previous arguments are defined
 
 ## Query Module
