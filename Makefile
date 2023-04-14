@@ -34,6 +34,9 @@ killdb: ## stop the database
 pcm: ## run precommit
 	@$(BIN)pre-commit run
 
+pypi: ## upload to PyPI
+	@$(BIN)python -m flit upload
+
 help:
 	@awk -F ':|##' \
 				'/^[^\t].+?:.*?##/ {\
