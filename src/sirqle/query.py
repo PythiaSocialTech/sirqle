@@ -98,6 +98,8 @@ class Query:
 
         elif isinstance(args, Query):
             return f"({args[:-1]})"
+        elif isinstance(args, int):
+            return args
 
     def custom(self, args: str) -> Query:
         """Create a simple query in SurrealQL.
