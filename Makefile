@@ -1,6 +1,6 @@
 .ONESHELL:
 
-.PHONY: data, help, install
+.PHONY: data, help, install, push
 export
 
 SHELL = /bin/zsh
@@ -34,8 +34,16 @@ killdb: ## stop the database
 pcm: ## run precommit
 	@$(BIN)pre-commit run
 
+bump:
+	@$(BIN)cz bump
+
+push:
+	@git push
+
 pypi: ## upload to PyPI
 	@$(BIN)python -m flit publish
+
+upload: bump push pypi
 
 help:
 	@awk -F ':|##' \
