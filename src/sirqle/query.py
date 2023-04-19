@@ -284,7 +284,7 @@ class Query:
         """
         if args:
             self.query += " RETURN "
-            self.query += self._parse_args(args)
+            self.query += self._parse_args(args, quote=False)
         else:
             warn(
                 "No arguments for RETURN statement. RETURN statement not \
