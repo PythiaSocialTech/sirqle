@@ -43,7 +43,7 @@ push:
 pypi: ## upload to PyPI
 	@$(BIN)python -m flit publish
 
-upload: bump push pypi
+upload: bump push pypi ## bump/push/pypi
 
 help:
 	@awk -F ':|##' \
