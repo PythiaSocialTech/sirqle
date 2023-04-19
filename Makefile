@@ -35,7 +35,7 @@ pcm: ## run precommit
 	@$(BIN)pre-commit run
 
 pypi: ## upload to PyPI
-	@$(BIN)python -m flit upload
+	@$(BIN)python -m flit publish
 
 help:
 	@awk -F ':|##' \
