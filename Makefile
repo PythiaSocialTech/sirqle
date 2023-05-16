@@ -11,7 +11,7 @@ warn:
 	@echo "Use make for development only!"
 
 install: warn ## install dev venv
-	@python3 -m venv .venv_dev
+	@python -m venv .venv_dev
 	@$(BIN)pip install -e '.[dev]'
 
 startdb: ## start the database
