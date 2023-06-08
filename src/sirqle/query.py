@@ -7,7 +7,7 @@ from warnings import warn
 
 from dotenv import dotenv_values
 from surrealdb.http import SurrealHTTP
-from surrealdb.ws import Surreal
+from surrealdb.ws import ConnectionState, Surreal
 
 PARAMS = ["URL", "NAMESPACE", "USERNAME", "PASSWORD", "DATABASE"]
 
@@ -322,6 +322,9 @@ class Query:
 
     async def _execute_query(self):
         self._end()
+        if isinstance(self.client, Surreal):
+            if self.client.client_state != ConnectionState.CONNECTED:
+                await self.client.connect()
         res = await self.client.query(self.query)
         self.last_query = self.query
         self.query = ""
