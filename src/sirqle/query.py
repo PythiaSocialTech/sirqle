@@ -235,10 +235,10 @@ class Query:
             Query: returns the same `Query` object
         """
         self.query += " DELETE "
-        self.query += self._parse_args(args)
+        self.query += self._parse_args(args, quote=False)
         return self
 
-    def DEFINE(self, args: str | list | dict | Query) -> Query:
+    def define(self, args: str | list | dict | Query) -> Query:
         """DEFINE statement.
 
         Args:
@@ -247,8 +247,8 @@ class Query:
         Returns:
             Query: returns the same `Query` object
         """
-        self.query += " DELETE "
-        self.query += self._parse_args(args)
+        self.query += " DEFINE "
+        self.query += self._parse_args(args, quote=False)
         return self
 
     def from_(self, args: str | list | dict | Query) -> Query:
