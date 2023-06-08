@@ -1,3 +1,21 @@
+## v0.2.4 (2023-06-08)
+
+### Fix
+
+- **ws**: auto-connect to surreal when executing query
+
+## v0.2.3 (2023-06-08)
+
+### Fix
+
+- fix DEFINE typo and remove quoting
+
+## v0.2.2 (2023-06-08)
+
+### Fix
+
+- **config**: check if env_file exists
+
 ## v0.2.1 (2023-06-08)
 
 ### Fix
