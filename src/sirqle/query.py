@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import os
 from typing import List, Optional, Tuple
 from urllib.parse import urlparse
 from warnings import warn
@@ -47,7 +48,7 @@ class Config:
         """
         if client:
             self.client = client
-        elif env_file:
+        elif os.path.isfile(env_file):
             conf = dotenv_values(env_file)
             if set(PARAMS).issubset(set(conf.keys())):
                 scheme = str(urlparse(conf["URL"]).scheme)
