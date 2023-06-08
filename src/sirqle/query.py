@@ -63,6 +63,10 @@ class Config:
                 username=username,
                 password=password,
             )
+        elif url:
+            scheme = str(urlparse(url).scheme)
+            if scheme in ["wss", "ws"]:
+                self.client = CLIENT[scheme](url=url)
 
     async def signup(self, user: str, password: str) -> str:
         return await self.client.signup({"user": user, "pass": password})
