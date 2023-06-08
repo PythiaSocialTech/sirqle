@@ -1,12 +1,22 @@
 from __future__ import annotations
 
 from typing import List, Optional, Tuple
+from urllib.parse import urlparse
 from warnings import warn
 
 from dotenv import dotenv_values
 from surrealdb.http import SurrealHTTP
+from surrealdb.ws import Surreal
 
-HTTP_PARAMS = ["URL", "NAMESPACE", "USERNAME", "PASSWORD", "DATABASE"]
+PARAMS = ["URL", "NAMESPACE", "USERNAME", "PASSWORD", "DATABASE"]
+
+
+CLIENT = {
+    "ws": Surreal,
+    "wss": Surreal,
+    "http": SurrealHTTP,
+    "https": SurrealHTTP,
+}
 
 
 class Config:
@@ -39,18 +49,26 @@ class Config:
             self.client = client
         elif env_file:
             conf = dotenv_values(env_file)
-            if set(HTTP_PARAMS).issubset(set(conf.keys())):
-                self.client = SurrealHTTP(
-                    **{param.lower(): conf[param] for param in HTTP_PARAMS}
+            if set(PARAMS).issubset(set(conf.keys())):
+                scheme = str(urlparse(conf["URL"]).scheme)
+                self.client = CLIENT[scheme](
+                    **{param.lower(): conf[param] for param in PARAMS}
                 )
-        elif all([username, database, password, namespace, url]):
-            self.client = SurrealHTTP(
+        elif username and database and password and namespace and url:
+            scheme = str(urlparse(url).scheme)
+            self.client = CLIENT[scheme](
                 url,
                 namespace=namespace,
                 database=database,
                 username=username,
                 password=password,
             )
+
+    async def signup(self, user: str, password: str) -> str:
+        return await self.client.signup({"user": user, "pass": password})
+
+    async def signin(self, user: str, password: str) -> str:
+        return await self.client.signin({"user": user, "pass": password})
 
 
 class Query:
@@ -260,19 +278,6 @@ class Query:
             )
         return self
 
-    def use(self, args: str | list | dict | Query) -> Query:
-        """USE statement.
-
-        Args:
-            args: arguments for the statement
-
-        Returns:
-            Query: returns the same `Query` object
-        """
-        self.query += " USE "
-        self.query += self._parse_args(args)
-        return self
-
     def return_(self, args: str | list | dict | Query | None) -> Query:
         """RETURN statement.
 
@@ -327,6 +332,18 @@ class Query:
             raise Exception("No client provided!")
         res = await self._execute_query()
         return res
+
+    async def use(self, ns: str, db: str) -> None:
+        if isinstance(self.client, Surreal):
+            await self.client.use(namespace=ns, database=db)
+        elif isinstance(self.client, SurrealHTTP):
+            self.client = SurrealHTTP(
+                url=self.client._url,
+                namespace=ns,
+                database=db,
+                username=self.client._username,
+                password=self.client._password,
+            )
 
     # HACK:
     def __repr__(self):
