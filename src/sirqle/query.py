@@ -36,15 +36,13 @@ class Config:
         It uses the `SurrealHTTP` client from the `surrealdb` library
 
         Args:
+            env_file: the name of an env file
+            client: a predefined Surreal client
             url: the URL to the database
             namespace: the namespace in the database
             database: the name of the database
             username: the username used for authentication
             password: the password used for authentication
-            client: an `SurrealHTTP` client configured beforehand
-            from_env: if it's set to True, it will load an `.db_conf`
-                file that has all the previous arguments set
-
         """
         if client:
             self.client = client
