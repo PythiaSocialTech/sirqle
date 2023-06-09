@@ -24,7 +24,7 @@ class Config:
     def __init__(
         self,
         env_file: str = ".db_conf",
-        client: Optional[SurrealHTTP] = None,
+        client: Optional[SurrealHTTP | Surreal] = None,
         url: Optional[str] = None,
         namespace: Optional[str] = None,
         database: Optional[str] = None,
@@ -70,9 +70,15 @@ class Config:
                 self.client = CLIENT[scheme](url=url)
 
     async def signup(self, user: str, password: str) -> str:
+        if isinstance(self.client, Surreal):
+            if self.client.client_state != ConnectionState.CONNECTED:
+                await self.client.connect()
         return await self.client.signup({"user": user, "pass": password})
 
     async def signin(self, user: str, password: str) -> str:
+        if isinstance(self.client, Surreal):
+            if self.client.client_state != ConnectionState.CONNECTED:
+                await self.client.connect()
         return await self.client.signin({"user": user, "pass": password})
 
 
