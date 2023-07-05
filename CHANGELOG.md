@@ -1,3 +1,9 @@
+## v0.2.5 (2023-06-09)
+
+### Fix
+
+- **client**: autoconnect on signup/signin
+
 ## v0.2.4 (2023-06-08)
 
 ### Fix
