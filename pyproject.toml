@@ -2,7 +2,7 @@
 name = "sirqle"
 version = "0.2.5"
 authors = [{ name = "Pythia Dev Team", email = "dev@pythia.social" }]
-description = "SurrealDB Query interface"
+description = "SurrealDB Query Interface"
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = ["python-dotenv", "surrealdb>=0.3.0"]
