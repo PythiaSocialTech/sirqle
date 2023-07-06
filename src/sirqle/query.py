@@ -335,6 +335,7 @@ class Query:
 
     async def use(self, ns: str, db: str) -> None:
         if isinstance(self.client, Surreal):
+            await self._connect()
             await self.client.use(namespace=ns, database=db)
         elif isinstance(self.client, SurrealHTTP):
             self.client = SurrealHTTP(
@@ -345,16 +346,17 @@ class Query:
                 password=self.client._password,
             )
 
-    async def signup(self, user: str, password: str) -> str:
+    async def _connect(self):
         if isinstance(self.client, Surreal):
             if self.client.client_state != ConnectionState.CONNECTED:
                 await self.client.connect()
+
+    async def signup(self, user: str, password: str) -> str:
+        await self._connect()
         return await self.client.signup({"user": user, "pass": password})
 
     async def signin(self, user: str, password: str) -> str:
-        if isinstance(self.client, Surreal):
-            if self.client.client_state != ConnectionState.CONNECTED:
-                await self.client.connect()
+        await self._connect()
         return await self.client.signin({"user": user, "pass": password})
 
     # HACK:
