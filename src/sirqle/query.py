@@ -351,13 +351,13 @@ class Query:
             if self.client.client_state != ConnectionState.CONNECTED:
                 await self.client.connect()
 
-    async def signup(self, user: str, password: str) -> str:
+    async def signup(self, user: str, password: str, params: dict) -> str:
         await self._connect()
-        return await self.client.signup({"user": user, "pass": password})
+        return await self.client.signup({"user": user, "pass": password, **params})
 
-    async def signin(self, user: str, password: str) -> str:
+    async def signin(self, user: str, password: str, params: dict) -> str:
         await self._connect()
-        return await self.client.signin({"user": user, "pass": password})
+        return await self.client.signin({"user": user, "pass": password, **params})
 
     # HACK:
     def __repr__(self):
