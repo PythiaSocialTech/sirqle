@@ -67,18 +67,6 @@ class Config:
             if scheme in ["wss", "ws"]:
                 self.client = CLIENT[scheme](url=url)
 
-    async def signup(self, user: str, password: str) -> str:
-        if isinstance(self.client, Surreal):
-            if self.client.client_state != ConnectionState.CONNECTED:
-                await self.client.connect()
-        return await self.client.signup({"user": user, "pass": password})
-
-    async def signin(self, user: str, password: str) -> str:
-        if isinstance(self.client, Surreal):
-            if self.client.client_state != ConnectionState.CONNECTED:
-                await self.client.connect()
-        return await self.client.signin({"user": user, "pass": password})
-
 
 class Query:
     def __init__(self, config: Config | None = None):
@@ -356,6 +344,18 @@ class Query:
                 username=self.client._username,
                 password=self.client._password,
             )
+
+    async def signup(self, user: str, password: str) -> str:
+        if isinstance(self.client, Surreal):
+            if self.client.client_state != ConnectionState.CONNECTED:
+                await self.client.connect()
+        return await self.client.signup({"user": user, "pass": password})
+
+    async def signin(self, user: str, password: str) -> str:
+        if isinstance(self.client, Surreal):
+            if self.client.client_state != ConnectionState.CONNECTED:
+                await self.client.connect()
+        return await self.client.signin({"user": user, "pass": password})
 
     # HACK:
     def __repr__(self):
