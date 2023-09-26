@@ -65,3 +65,6 @@ bump_message = "bump: $current_version → $new_version [skip ci]"
 [tool.pytest.ini_options]
 testpaths = 'tests'
 asyncio_mode = 'strict'
+
+[tool.ruff]
+ignore = ['F401']
