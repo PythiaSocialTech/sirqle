@@ -1,6 +1,6 @@
 [project]
 name = "sirqle"
-version = "0.2.9"
+version = "0.2.10"
 authors = [{ name = "Pythia Dev Team", email = "dev@pythia.social" }]
 description = "SurrealDB Query Interface"
 readme = "README.md"
@@ -56,7 +56,7 @@ ensure_newline_before_comments = true
 
 [tool.commitizen]
 name = "cz_conventional_commits"
-version = "0.2.9"
+version = "0.2.10"
 version_files = ["pyproject.toml:version"]
 tag_format = "v$version"
 bump_message = "bump: $current_version → $new_version [skip ci]"
