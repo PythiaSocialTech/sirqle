@@ -17,10 +17,10 @@ jobs:
         with:
           fetch-depth: 0
           ssh-key: "${{ secrets.COMMIT_KEY }}"
-      - id: cz
-        name: Create bump and changelog
+      - name: Create bump and changelog
         uses: commitizen-tools/commitizen-action@master
         with:
-          github_token: ${{ secrets.BUMP_TOKEN }}
-      - name: Print Version
-        run: echo "Bumped to version ${{ steps.cz.outputs.version }}"
+          push: false
+      - name: Push using ssh
+        run: |
+          git push origin main --tags
