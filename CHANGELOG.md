@@ -1,3 +1,16 @@
+## v0.3.0 (2023-09-27)
+
+### Fix
+
+- **auth**: add extra params to singup
+- **query**: autoconnect when using
+- **auth**: move auth in query
+- **build**: fix py version
+
+### Refactor
+
+- split code in files
+
 ## v0.2.5 (2023-06-09)
 
 ### Fix
