@@ -27,6 +27,7 @@ dev = [
   "pytest-dependency",
   "commitizen",
   "flit",
+  "Faker",
 ]
 docs = [
   "mkdocs",
