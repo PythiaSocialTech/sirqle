@@ -70,7 +70,7 @@ class Query:
         self.query += args
         return self
 
-    def select(self, args: str | List[str]) -> Query:
+    def select(self, args: str | List[str] = "*") -> Query:
         """SELECT statement.
         Args:
 
