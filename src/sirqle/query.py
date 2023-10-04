@@ -29,7 +29,7 @@ class Query:
     def _parse_args(self, args: str | list | dict | tuple | Query, quote=True) -> str:
         if isinstance(args, str):
             if quote and ":" not in args:
-                return f"'{args}'"
+                return repr(args)
             return args
         elif isinstance(args, list):
             if quote:
