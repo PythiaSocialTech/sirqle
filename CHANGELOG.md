@@ -1,3 +1,14 @@
+## v0.3.2 (2023-10-04)
+
+### Fix
+
+- **parser**: add `repr` to escape strings
+
+### Refactor
+
+- add * by default on select
+- **test**: add faker for generating fake stuff and put all tests in a single file
+
 ## v0.3.1 (2023-09-27)
 
 ### Fix
