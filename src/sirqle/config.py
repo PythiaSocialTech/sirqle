@@ -63,3 +63,17 @@ class Config:
             scheme = str(urlparse(url).scheme)
             if scheme in ["wss", "ws"]:
                 self.client = CLIENT[scheme](url=url)
+        else:
+            url = os.environ.get("SURREAL_URL")
+            namespace = os.environ.get("SURREAL_NS")
+            username = os.environ.get("SURREAL_DB")
+            username = os.environ.get("SURREAL_USER")
+            password = os.environ.get("SURREAL_PASSWORD")
+            scheme = str(urlparse(url).scheme)
+            self.client = CLIENT[scheme](
+                url,
+                namespace=namespace,
+                database=database,
+                username=username,
+                password=password,
+            )
