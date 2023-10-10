@@ -1,3 +1,9 @@
+## v0.3.3 (2023-10-10)
+
+### Refactor
+
+- add load config from
+
 ## v0.3.2 (2023-10-04)
 
 ### Fix
