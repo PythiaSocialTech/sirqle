@@ -66,12 +66,12 @@ class Config:
         else:
             url = os.environ.get("SURREAL_URL")
             namespace = os.environ.get("SURREAL_NAMESPACE")
-            username = os.environ.get("SURREAL_DATABASE")
+            database = os.environ.get("SURREAL_DATABASE")
             username = os.environ.get("SURREAL_USERNAME")
             password = os.environ.get("SURREAL_PASSWORD")
             scheme = str(urlparse(url).scheme)
             self.client = CLIENT[scheme](
-                url,
+                url=url,
                 namespace=namespace,
                 database=database,
                 username=username,
