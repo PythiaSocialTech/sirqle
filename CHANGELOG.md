@@ -1,3 +1,10 @@
+## v0.4.0 (2023-11-05)
+
+### Fix
+
+- typo in env unpacking
+- change os environments
+
 ## v0.3.3 (2023-10-10)
 
 ### Refactor
