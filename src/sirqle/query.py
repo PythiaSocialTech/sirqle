@@ -3,8 +3,8 @@ from __future__ import annotations
 from typing import List, Tuple
 from warnings import warn
 
-from surrealdb.http import SurrealHTTP
-from surrealdb.ws import ConnectionState, Surreal
+from surrealdb2.http import SurrealHTTP
+from surrealdb2.ws import ConnectionState, Surreal
 
 from sirqle.config import Config
 

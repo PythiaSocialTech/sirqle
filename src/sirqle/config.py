@@ -3,8 +3,8 @@ from typing import Optional
 from urllib.parse import urlparse
 
 from dotenv import dotenv_values
-from surrealdb.http import SurrealHTTP
-from surrealdb.ws import Surreal
+from surrealdb2.http import SurrealHTTP
+from surrealdb2.ws import Surreal
 
 PARAMS = ["URL", "NAMESPACE", "USERNAME", "PASSWORD", "DATABASE"]
 
