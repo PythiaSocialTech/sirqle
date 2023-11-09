@@ -1,3 +1,9 @@
+## v0.4.2 (2023-11-09)
+
+### Fix
+
+- change surreal db source
+
 ## v0.4.1 (2023-11-09)
 
 ### Fix
