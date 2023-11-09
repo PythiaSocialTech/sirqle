@@ -7,8 +7,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
     "python-dotenv",
-    "surrealdb",
-    "pydantic>=2.4.2",
+    "surrealdb @ git+https://github.com/TudorAndrei-Pythia/surrealdb.py",
 ]
 license = { file = "LICENSE" }
 
