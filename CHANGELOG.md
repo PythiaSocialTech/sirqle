@@ -1,3 +1,9 @@
+## v0.4.4 (2023-11-09)
+
+### Fix
+
+- update code to surrealdb2
+
 ## v0.4.3 (2023-11-09)
 
 ### Fix
